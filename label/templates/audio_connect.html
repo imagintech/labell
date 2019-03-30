@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html>
+<title>Projects | audio-connect</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Roboto'>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+<link rel="stylesheet" type="text/css" href="{{url_for('static', filename='css/audio_connect.css')}}">
+<body class="w3-light-grey">
+
+<!-- Page Container -->
+<div class="w3-content w3-margin-top" style="max-width:1400px">
+
+  <!-- The Grid -->
+  <div class="w3-row-padding">
+  
+    <!-- Left Column -->
+    <div class="w3-third">
+    
+      <div class="w3-white w3-text-grey w3-card-4">
+        <div class="w3-display-container">
+        	<div style="margin-left: 70px;">
+          		<img src="../images/audio-connect/audio_connect_512.png" style="width:70%;align-self: center;" alt="Avatar">
+      		</div>
+          <hr>
+        </div>
+
+        <h2 class="left-col-1">Audio Connect</h2>
+
+        <div class="w3-container">
+          <p><i class="fa fa-envelope fa-fw w3-margin-right w3-large w3-text-teal"></i>imagintech7102@gmail.com</p>
+          <hr>
+
+          <!-- Downloads Section -->
+          <p class="w3-large"><b><i class="fa fa-download fa-fw w3-margin-right w3-text-teal"></i>Downloads</b></p>
+            <h6 class="left-col-2">Audio-connect server</h6>
+                <p class="left-col-3">Linux</p>
+                    <p class="left-col-4"><a class="mylink" href="http://www.srinathnaik.in">audio-connect.pkg</a></p>
+                <!-- <p class="left-col-3">Windows:</p>
+                    <p class="left-col-4"><a class="mylink" href="http://www.srinathnaik.in">download exe file</a></p> -->
+
+            <h6 class="left-col-2">Audio-connect app</h6>
+                <p class="left-col-3">Android:</p>
+                    <p class="left-col-4"><a class="mylink" href="http://www.srinathnaik.in">get from play store</a></p>
+          <hr>
+
+          <p class="w3-large w3-text-theme"><b><i class="fa fa-globe fa-fw w3-margin-right w3-text-teal"></i>Current Status</b></p>
+          <p>Version 1.0.0</p>
+          <p>Basic one, streams from a computer to mobile, app available only for android</p>
+          <hr>
+          <!-- dummy data -->
+            <p>&nbsp;</p>
+            <p>&nbsp;</p>
+            <p>&nbsp;</p>
+            <p>&nbsp;</p>
+            <p>&nbsp;</p>
+            <!-- <p>&nbsp;</p> -->
+          <!-- dummy data -->
+        </div>
+      </div><br>
+
+    <!-- End Left Column -->
+    </div>
+
+    <!-- Right Column -->
+    <div class="w3-twothird">
+    
+      <div class="w3-container w3-card-2 w3-white w3-margin-bottom">
+        <h2 class="w3-text-grey w3-padding-16"><i class="fa fa-lightbulb-o fa-fw w3-margin-right w3-xxlarge w3-text-teal"></i>About the project</h2>
+        <div class="w3-container">
+          <h5 class="w3-opacity"><b>Motivation</b></h5>
+          <p>
+            The aim of this project is to stream audio from one device to multiple other devices. One particular use case which drove this project is assuming a bunch of
+            friends trying to watch a video on a device and the device's volume level of speakers is too low or they don't want to disturb nearby people. Using this app
+            that audio can be streamed to multiple mobiles and people can hear(preferably via plugged-in headphones) seamlessly.
+          </p>
+          <hr>
+        </div>
+
+        <div class="w3-container">
+          <h5 class="w3-opacity"><b>Basic Idea</b></h5>
+          <p>
+            Create a server, capture audio data and start streaming over the network to the connected clients using UDP protocol. On client side, receive the audio data
+            and play via device's speakers.
+          </p>
+          <hr>
+        </div>
+
+        <div class="w3-container">
+          <h5 class="w3-opacity"><b>Future Work</b></h5>
+          <p>To enable streaming from any audio-connect device to multiple audio-connect devices</p>
+        </div>
+      </div>
+
+      <div class="w3-container w3-card-2 w3-white w3-margin-bottom">
+        <h2 class="w3-text-grey w3-padding-16"><i class="fa fa-cogs fa-fw w3-margin-right w3-xxlarge w3-text-teal"></i>Installation</h2>
+        <div class="w3-container">
+          <h5 class="w3-opacity"><b>Server</b></h5>
+          <h6 class="w3-text-teal"><i class="fa fa-linux fa-fw w3-margin-right"></i>Linux</h6>
+            <p class="instructions">Download the <b class="w3-opacity">.pkg</b> file from <b class="w3-opacity">Downloads</b> section and double click to install the app. Please go through the sections <b class="w3-opacity">Configuration</b> and <b class="w3-opacity">Usage</b> for further instructions.</p>
+
+            <p>
+              <b>Important Note:</b><br>
+              <ol>
+                <li>
+                  The app actually streams the dataline of your microphone to the mobile client, as of now it do not have the capability of detecting currently playing datalines. So you need to <b class="w3-opacity">give permission to access the microphone</b>.
+                </li>
+                <li>
+                  In order to listen to any audio played on your desktop, you have to rely on Operating System based software through which you can select the corresponding audio to be streamed to the app.
+                </li>
+              </ol>
+            </p>
+
+          <hr>
+        </div>
+
+        <div class="w3-container">
+          <h5 class="w3-opacity"><b>App</b></h5>
+          <h6 class="w3-text-teal"><i class="fa fa-android fa-fw w3-margin-right"></i>Android</h6>
+          <p class="instructions">Download the app from android play store and install on your mobile.</p>
+          <hr>
+        </div>
+      </div>
+
+    <!-- End Right Column -->
+    </div>
+    
+    <div class="customCard">
+      <h2 class="w3-text-grey w3-padding-16"><i class="fa fa-cog fa-fw w3-margin-right w3-xxlarge w3-text-teal"></i>Configuration</h2>
+      <div class="w3-container">
+      <p>
+          <h5 class="w3-opacity"><b>Using PulseAudio Volume Control in Linux to stream any audio</b></h5>
+          <b>(You need to do this only once)</b><br>
+          <ol>
+            <li>Make sure you have PulseAudio Volume Control<b class="w3-opacity">(PAVU Control)</b> installed on your system</li>
+            <li>Start the audio-connect app (don't forget to give microphone access)</li>
+            <li>Open <b class="w3-opacity">PAVU Control</b>, you will see something like below</li>
+            <br>
+              <img class="screenshot" src="../images/audio-connect/pavuControl1.png">
+            <br>
+            <br>
+            <li>Go to the <b class="w3-opacity">Recording</b> section, you can see the audio-connect app and select <b class="w3-opacity">Monitor of Built-in Audio Analog Stereo</b> to stream from</li>
+            <br>
+              <img class="screenshot" src="../images/audio-connect/pavuControl2.png">
+              <br>
+              <br>
+            <li>Hurray! you are done with the server setup</li>
+          </ol>
+      </p>
+      </div>
+    </div>
+
+    <div class="customCard">
+      <h2 class="w3-text-grey w3-padding-16"><i class="fa fa-check-circle fa-fw w3-margin-right w3-xxlarge w3-text-teal"></i>Usage</h2>
+        <div class="w3-container">
+            <h5 class="w3-opacity">To stream from a computer to mobiles</h5>
+            <ol>
+            <li> Make sure you have audio-connect server installed and configured on your system & audio-connect app installed on your mobile device</li>
+            <li>Also, make sure all your devices are connected to same WiFi or all mobiles to hotspot of one computer</li>
+            <li>Start the server app on your computer by clicking on start-server button. Wait till server status displayed as RUNNING...</li>
+            <li>On your mobile, open the audio-connect app and press the search button (bottom-center) to search the for the server</li>
+            <li>The detected server's IP and PORT are shown at the center</li>
+            <li>Press 'connect' button (bottom-right) to listen to the stream.</li>
+            <li>Enjoy the new audio experience!, email us for any help</li>
+          </ol>
+        </div>
+    </div>
+
+  <!-- End Grid -->
+  </div>
+  
+  <!-- End Page Container -->
+</div>
+
+<footer class="myfooter">
+  <p class="footerText">For any queries or suggestions, email us at imagintech7102@gmail.com </p>
+</footer>
+
+</body>
+</html>

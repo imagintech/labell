@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>labell</title>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script> 
+</head>
+<body>
+<h1>welcome to labell !</h1>
+
+	<div>
+	<h1>templates</h1>
+		<ul id="template_list">
+		{% for template in templates %}
+			<li id="{{template.name}}">{{template.name}}</li>
+		{% endfor %}
+		</ul>
+	</div>
+
+	<div>
+	<h1>datasets</h1>
+	<ul id="dataset_list">
+	{% for dataset in datasets %}
+		<li id="{{dataset.name}}" data-value="{{dataset.folder}}">{{dataset.name}}</li>
+	{% endfor %}
+	</ul>
+	</div>
+
+	<h1>create template</h1>
+
+	<div>
+		Name : <input type="text" id="template_name">
+	</div>
+
+	<div>
+		Point <input type="text" id="point_name"> <button id="point">Add</button>
+	</div>
+
+	<div>
+		Line <input type="text" id="line_name"> <button id="line">Add</button>
+	</div>
+
+	<div>
+		Polygon <input type="text" id="polygon_name"> <button id="polygon">Add</button>
+	</div>
+
+	<button id="create_template">Create</button>
+
+	<h2>cart</h2>
+		<ol id="cart">
+		</ol> 
+
+	<h1>create dataset</h1>
+	<div>
+		Name : <input type="text" id="dataset_name">
+	</div>
+	<div>
+		Folder : <input type="text" id="dataset_folder">
+	</div>
+	<button id="create_dataset">Create</button>
+
+	<h1>current selections</h1>
+	<b><p id="selected_template">click on a template to select</p></b>
+	<b><p id="selected_dataset">click on a dataset to select</p></b>
+	<p id="selected_folder">select a dataset to see corresponding folder</p>
+
+	<button id="start_label">Start Labelling..</button>
+
+<script src="{{url_for('static', filename='js/template.js')}}"></script>
+</body>
+</html>
