@@ -22,7 +22,7 @@
       <div class="w3-white w3-text-grey w3-card-4">
         <div class="w3-display-container">
         	<div style="margin-left: 70px;">
-          		<img src="../images/audio-connect/audio_connect_512.png" style="width:70%;align-self: center;" alt="Avatar">
+          		<img src="{{url_for('static', filename='imgs/audio_connect_512.png')}}" style="width:70%;align-self: center;" alt="Avatar">
       		</div>
           <hr>
         </div>
@@ -138,12 +138,12 @@
             <li>Start the audio-connect app (don't forget to give microphone access)</li>
             <li>Open <b class="w3-opacity">PAVU Control</b>, you will see something like below</li>
             <br>
-              <img class="screenshot" src="../images/audio-connect/pavuControl1.png">
+              <img class="screenshot" src="{{url_for('static', filename='imgs/pavuControl1.png')}}">
             <br>
             <br>
             <li>Go to the <b class="w3-opacity">Recording</b> section, you can see the audio-connect app and select <b class="w3-opacity">Monitor of Built-in Audio Analog Stereo</b> to stream from</li>
             <br>
-              <img class="screenshot" src="../images/audio-connect/pavuControl2.png">
+              <img class="screenshot" src="{{url_for('static', filename='imgs/pavuControl2.png')}}">
               <br>
               <br>
             <li>Hurray! you are done with the server setup</li>

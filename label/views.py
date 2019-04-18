@@ -13,13 +13,13 @@ db = mongo(app)
 def welcome_page():
 	all_templates = db.get_all_templates(user)
 	datasets = db.get_all_datasets(user)
-	return render_template('base.html', request=request, templates=all_templates['templates'], datasets=datasets['datasets'])
-
-@app.route('/_add_numbers')
-def add_numbers():
-	a = request.args.get('a', 0, type=int)
-	b = request.args.get('b', 0, type=int)
-	return jsonify(result=a + b)
+	my_templates = []
+	my_datasets = []
+	if all_templates is not None:
+		my_templates = all_templates['templates']
+	if dataset is not None:
+		my_datasets = datasets['datasets']
+	return render_template('base.html', request=request, templates=my_templates, datasets=my_datasets)
 
 @app.route('/create_template', methods = ['POST'])
 def create_template():
