@@ -1,70 +1,100 @@
 <!DOCTYPE html>
 <html>
+
 <head>
 	<title>labell</title>
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script> 
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+	<link rel="stylesheet" type="text/css" href="{{url_for('static', filename='css/base.css')}}">
 </head>
+
 <body>
-<h1>welcome to labell !</h1>
 
-	<div>
-	<h1>templates</h1>
-		<ul id="template_list">
-		{% for template in templates %}
-			<li id="{{template.name}}">{{template.name}}</li>
-		{% endfor %}
-		</ul>
+<h1 class="highlighttext">Welcome to labell !</h1>
+
+{% if message['type'] == "SUCCESS" %}
+<p class="responsemessageSuccess"><b>{{message['title']}}</b><p>
+{% endif %}
+{% if message.type == "ERROR" %}
+<p class="responsemessageError"><b>{{message['title']}}</b><p>
+{% endif %}
+
+	<div class="container">
+		<div class="leftpane">
+			<div>
+				<h1>Templates</h1>
+				<ul id="template_list">{% for template in templates %}
+					<li id="{{template}}">{{template}}</li>{% endfor %}</ul>
+			</div>
+			<div>
+				<h1>Datasets</h1>
+				<ul id="dataset_list">{% for dataset in datasets %}
+					<li id="{{dataset}}">{{dataset}}</li>{% endfor %}</ul>
+			</div>
+  		</div>
+
+  		<div class="rightpane">
+  			<div class="righttoppane">
+  				<div class="righttopleftpane">
+					<h1>Create template</h1>
+					<div>Point &nbsp&nbsp &nbsp &nbsp:
+						<input type="text" id="point_name">
+						<button id="point">Add</button>
+					</div>
+					<div>Line &nbsp &nbsp &nbsp &nbsp:
+						<input type="text" id="line_name">
+						<button id="line">Add</button>
+					</div>
+					<div>Polygon &nbsp:
+						<input type="text" id="polygon_name">
+						<button id="polygon">Add</button>
+					</div>
+					<h2>cart</h2>
+					<ol id="cart" class="usercuetext">
+						<li>add points, lines and polygons to cart</li>
+					</ol>
+
+					<h2>template name</h2>
+					<input type="text" id="template_name">
+					
+					<div class="btn-group">
+						<button id="create_template">Create</button>
+					</div>
+  				</div>
+
+  				<div class="righttoprightpane">
+					<h1>Create dataset</h1>
+					<div>Name&nbsp :
+						<input type="text" id="dataset_name">
+					</div>
+					<div>Folder :
+						<input type="text" id="dataset_folder">
+					</div>
+					<div class="btn-group">
+						<button id="create_dataset">Create</button>
+					</div>
+  				</div>
+  			</div>
+
+  			<div class="rightbottompane">
+  				<br>
+  				<hr>
+				<h1>Current selections</h1>
+				<b><p id="selected_template" class="highlighttext">click on a template to select</p></b>
+				<b><p id="selected_dataset" class="highlighttext">click on a dataset to select</p></b>
+				<form action="/label" method="POST">
+					<input type="hidden" id="template_input" name="template" value="">
+					<input type="hidden" id="dataset_input" name="dataset" value="">
+
+					<div class="btn-group">
+						<input type="submit" value="Start Labelling..">
+					</div>
+					
+				</form>
+  			</div>
+  		</div>
 	</div>
 
-	<div>
-	<h1>datasets</h1>
-	<ul id="dataset_list">
-	{% for dataset in datasets %}
-		<li id="{{dataset.name}}" data-value="{{dataset.folder}}">{{dataset.name}}</li>
-	{% endfor %}
-	</ul>
-	</div>
-
-	<h1>create template</h1>
-
-	<div>
-		Name : <input type="text" id="template_name">
-	</div>
-
-	<div>
-		Point <input type="text" id="point_name"> <button id="point">Add</button>
-	</div>
-
-	<div>
-		Line <input type="text" id="line_name"> <button id="line">Add</button>
-	</div>
-
-	<div>
-		Polygon <input type="text" id="polygon_name"> <button id="polygon">Add</button>
-	</div>
-
-	<button id="create_template">Create</button>
-
-	<h2>cart</h2>
-		<ol id="cart">
-		</ol> 
-
-	<h1>create dataset</h1>
-	<div>
-		Name : <input type="text" id="dataset_name">
-	</div>
-	<div>
-		Folder : <input type="text" id="dataset_folder">
-	</div>
-	<button id="create_dataset">Create</button>
-
-	<h1>current selections</h1>
-	<b><p id="selected_template">click on a template to select</p></b>
-	<b><p id="selected_dataset">click on a dataset to select</p></b>
-	<p id="selected_folder">select a dataset to see corresponding folder</p>
-
-	<button id="start_label">Start Labelling..</button>
-
-<script src="{{url_for('static', filename='js/template.js')}}"></script>
+	<script src="{{url_for('static', filename='js/base.js')}}"></script>
 </body>
+
 </html>
