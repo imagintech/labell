@@ -1,25 +1,31 @@
 from label import app
 from label.database import mongo
-from flask import render_template, jsonify, request
+from flask import render_template, jsonify, request, redirect, url_for
 import json
 
 user = "1995"
+successMessage = "SUCCESS"
 
 # initialise the db
 db = mongo(app)
 
+# session kind of variable
+message = {}
+
+def refreshMessage():
+	message["type"] = ""
+	message["title"] = ""
+
 # welcome page
 @app.route('/')
-def welcome_page():
-	all_templates = db.get_all_templates(user)
+def base():
+
+	templates = db.get_all_templates(user)
 	datasets = db.get_all_datasets(user)
-	my_templates = []
-	my_datasets = []
-	if all_templates is not None:
-		my_templates = all_templates['templates']
-	if dataset is not None:
-		my_datasets = datasets['datasets']
-	return render_template('base.html', request=request, templates=my_templates, datasets=my_datasets)
+	
+	base_template = render_template('base.html', request=request, templates=templates, datasets=datasets, message=message)
+	refreshMessage()
+	return base_template
 
 @app.route('/create_template', methods = ['POST'])
 def create_template():
@@ -31,7 +37,8 @@ def create_template():
 			"structure" : data
 	}
 	db.insert_template(user, templateJson)
-	return "SUCCESS"
+
+	return successMessage
 
 @app.route('/create_dataset', methods = ['POST'])
 def create_dataset():
@@ -40,16 +47,51 @@ def create_dataset():
 
 	datasetJson = {
 			"name" : name,
-			"folder" : folder
+			"url" : folder
 	}
 	db.insert_dataset(user, datasetJson)
-	return "SUCCESS"
+
+	return successMessage
 
 @app.route('/label', methods = ['POST'])
 def label_page():
-	template = request.form['template']
-	dataset = request.form['dataset']
-	return render_template('label.html', template=template, dataset=dataset)
+
+	# get request parameters
+	templateName	= request.form['template']
+	datasetName		= request.form['dataset']
+
+	# validate the parameters
+	if not templateName or not datasetName:
+		message["type"] = "ERROR"
+		message["title"] = "template or dataset not selected :("
+		return redirect(url_for('base'))
+
+	# get needed data from DB
+	template = db.get_template(user, templateName)
+	dataset = db.get_dataset(user, datasetName)
+
+	# validate the db results
+	if not template or not dataset:
+		message["type"] = "ERROR"
+		message["title"] = "template or dataset invalid :("
+		return redirect(url_for('base'))
+
+	label_template = render_template('label.html', template=template, dataset=dataset)
+	refreshMessage()
+
+	return label_template
+	
+
+@app.route('/next_image', methods = ['POST'])
+def get_next_image():
+	return db.get_next_image()
+
+@app.route('/save_image', methods = ['POST'])
+def save_image():
+	url   = request.form['url']
+	data  = json.loads(request.form['data'])
+	resp  = db.save_image(url, data)
+	return resp
 
 @app.route('/audio-connect', methods = ['GET'])
 def audio_connect_page():
