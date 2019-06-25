@@ -23,7 +23,7 @@ class mongo:
 	def get_all_templates(self, userId):
 		result = self.mongo.db.users.find_one({'userId' : userId})
 		self.log(result)
-		if result not None:
+		if result is not None:
 			return result['templates']
 		else:
 			return {}
@@ -31,7 +31,7 @@ class mongo:
 	def get_all_datasets(self, userId):
 		result = self.mongo.db.users.find_one({'userId' : userId})
 		self.log(result)
-		if result not None:
+		if result is not None:
 			return result['datasets']
 		else:
 			return {}
