@@ -23,12 +23,18 @@ class mongo:
 	def get_all_templates(self, userId):
 		result = self.mongo.db.users.find_one({'userId' : userId})
 		self.log(result)
-		return result['templates']
+		if result not None:
+			return result['templates']
+		else:
+			return {}
 
 	def get_all_datasets(self, userId):
 		result = self.mongo.db.users.find_one({'userId' : userId})
 		self.log(result)
-		return result['datasets']
+		if result not None:
+			return result['datasets']
+		else:
+			return {}
 
 	def insert_template(self, userId, templateJson):
 
