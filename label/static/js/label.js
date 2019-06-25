@@ -2,6 +2,11 @@ var canvas = document.getElementById('image');
 canvas.width = 800;
 canvas.height = 600;
 
+// urls
+var baseUrl = "/labell";
+var saveImageUrl = baseUrl+"/save_image";
+var nextImageUrl = baseUrl+"/next_image";
+
 var templateDisplay = document.getElementById("templateDisplay");
 var undoButton = document.getElementById("undoButton");
 var nextButton = document.getElementById("nextButton");
@@ -241,7 +246,7 @@ window.onload = function() {
 
     function saveImage() {
 
-        $.post("/save_image", {
+        $.post(saveImageUrl, {
                 url: image.src,
                 data: JSON.stringify(labelled_data)
             },
@@ -261,7 +266,7 @@ window.onload = function() {
 
     function getNextImage() {
 
-        $.post("/next_image", {},
+        $.post(nextImageUrl, {},
             function(response) {
                 image.onload = imload;
                 image.src = response;
