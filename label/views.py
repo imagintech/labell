@@ -5,6 +5,7 @@ import json
 
 user = "1995"
 successMessage = "SUCCESS"
+baseUrl = "/labell"
 
 # initialise the db
 db = mongo(app)
@@ -17,7 +18,7 @@ def refreshMessage():
 	message["title"] = ""
 
 # welcome page
-@app.route('/')
+@app.route(baseUrl+'/')
 def base():
 
 	templates = db.get_all_templates(user)
@@ -27,7 +28,7 @@ def base():
 	refreshMessage()
 	return base_template
 
-@app.route('/create_template', methods = ['POST'])
+@app.route(baseUrl+'/create_template', methods = ['POST'])
 def create_template():
 	name  = request.form['name']
 	data  = json.loads(request.form['data'])
@@ -40,7 +41,7 @@ def create_template():
 
 	return successMessage
 
-@app.route('/create_dataset', methods = ['POST'])
+@app.route(baseUrl+'/create_dataset', methods = ['POST'])
 def create_dataset():
 	name = request.form['name']
 	folder = request.form['folder']
@@ -53,7 +54,7 @@ def create_dataset():
 
 	return successMessage
 
-@app.route('/label', methods = ['POST'])
+@app.route(baseUrl+'/label', methods = ['POST'])
 def label_page():
 
 	# get request parameters
@@ -82,11 +83,11 @@ def label_page():
 	return label_template
 	
 
-@app.route('/next_image', methods = ['POST'])
+@app.route(baseUrl+'/next_image', methods = ['POST'])
 def get_next_image():
 	return db.get_next_image()
 
-@app.route('/save_image', methods = ['POST'])
+@app.route(baseUrl+'/save_image', methods = ['POST'])
 def save_image():
 	url   = request.form['url']
 	data  = json.loads(request.form['data'])

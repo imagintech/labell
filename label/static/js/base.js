@@ -4,8 +4,9 @@ var selected_template = "click on a template to select";
 var selected_dataset = "click on a dataset to select";
 
 // backend urls
-var createTemplateUrl = "/create_template";
-var createDatasetUrl = "/create_dataset";
+var baseUrl = "/labell";
+var createTemplateUrl = baseUrl+"/create_template";
+var createDatasetUrl = baseUrl+"/create_dataset";
 
 // error messages
 var templateNameRequired = "please specify a valid template name";
